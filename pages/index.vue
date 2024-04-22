@@ -1,21 +1,21 @@
 <template>
-    <v-layout row wrap>
-        <v-row>
-            <v-flex v-for="i in [1,2,3,4]" :key="i"   class="pa-5 xs12 md4" >
-                <cCardVue />        
-            </v-flex>
-        </v-row>
-    </v-layout>
+  <h1>Hola mundo x2</h1>
+  <!-- <cCardVue /> -->
 </template>
 
 <script>
-import cCardVue from "~/components/cCard.vue";
+// import cCardVue from "~/components/cCard.vue";
 
-export default {
-  components: {
-    cCardVue,
-  },
-};
+  export default {
+    components: {
+      // cCardVue
+    },
+    data () {
+      return {
+        dialog: false,
+      }
+    },
+  };
 </script>
 
 <style>
