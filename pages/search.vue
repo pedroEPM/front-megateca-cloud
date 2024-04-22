@@ -1,5 +1,5 @@
 <template>
-  <h1>Hola mundo 2</h1>
+  <h1>Dimitri task</h1>
 </template>
 
 <script>
