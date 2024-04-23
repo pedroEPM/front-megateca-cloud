@@ -1,22 +1,32 @@
 <template>
-  <h1>Hola mundo x2</h1>
-  <!-- <cCardVue /> -->
+
+  <cCardVue />
+  <cCardVue />
+  <cCardVue />
+  <cCardVue />
+  <cCardVue />
+  <cCardVue />
+
 </template>
 
+
 <script>
-// import cCardVue from "~/components/cCard.vue";
+import cCardVue from '~/components/cCard.vue';
 
   export default {
     components: {
-      // cCardVue
+      cCardVue
     },
     data () {
       return {
         dialog: false,
+        config: useRuntimeConfig(),
+
       }
     },
   };
 </script>
+
 
 <style>
 </style>

@@ -11,5 +11,11 @@ export default defineNuxtConfig({
     vuetifyOptions: {
       /* vuetify options */
     }
+  },
+  runtimeConfig: {
+    apiSecret: '123',
+    public: {
+      apiBase: 'http://localhost:3001'
+    }
   }
 })

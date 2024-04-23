@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar color="primary" dark class="pl-5 pr-5">
+    <v-toolbar color="primary" dark class="pl-5 pr-5" fixed>
       <v-toolbar-side-icon>
         <v-img
           src="https://www.megamedia.com.mx/wp-content/uploads/2023/12/logomegamedia.png"
@@ -49,6 +49,11 @@
         <slot />
       </v-container>
     </v-content>
+    <v-footer class="d-flex flex-column pa-0">
+    <div class="px-4 py-2 bg-black text-center w-100">
+      {{ new Date().getFullYear() }} — <strong>Megamedia</strong>
+    </div>
+  </v-footer>
   </v-app>
 </template>
 
