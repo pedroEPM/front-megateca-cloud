@@ -3,6 +3,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Lora:ital,wght@0,400..700;1,400..700&family=Oswald&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
     <footer class="footer">
       <div class="social-media">
@@ -76,19 +82,83 @@
       <button class="button-date" @click="searchByDate">Buscar</button>
     </div>
 
-    <div class="time-machine">
-    <h1 class="main-title">Tal día como hoy</h1>
-    <div class="newspapers">
-      <div class="newspaper" v-for="(item, index) in bannerData" :key="index">
-        <div class="date-box">
-          <h2 class="date">{{ item.title }}</h2>
-          <p class="date-sub">{{ item.date }}</p>
+    <div class="news-display">
+
+    <div class="news-image">
+      <img :src="newsImageUrl" alt="Portada de La Vanguardia">
+    </div>
+
+    <div class="news-details">
+
+      <div class="details">
+
+        <div class="button-container">
+          <button type="button" class="svg-button">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+            </svg>
+          </button>
+          <div class="date">22/04/2023</div>
+          <button type="button" class="svg-button">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/>
+            </svg>
+          </button>
         </div>
-        <img class="image" :src="item.imageUrl" :alt="`Cover from ${item.title}`">
-        <a class="link" :href="item.link" target="_blank">VER EJEMPLAR</a>
+
+        <div class="edition">Edición</div>
+        <div class="subedition">Diario de Yucatan</div>
+        <div class="pages">Páginas</div>
+        <div class="subpages">56</div>
+        <div class="year">Año</div>
+        <div class="subyear">2023</div>
+      </div>
+
+      <div class="actions">
+        <button class="all-covers">VER TODAS LAS PORTADAS</button>
+      </div>
+
+      <div class="search-box">
+        <input type="text" placeholder="Buscar en la edición">
+        <button>Buscar</button>
+      </div>
+
+      <div class="additional-links">
+
+        <span class="flex items-center">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+            <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+          </svg>
+          <span class="ml-2">Ver portada en PDF</span>
+        </span>
+
+        <span class="flex items-center">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.5 3a3.5 3.5 0 0 0-3.456 4.06L8.143 9.704a3.5 3.5 0 1 0-.01 4.6l5.91 2.65a3.5 3.5 0 1 0 .863-1.805l-5.94-2.662a3.53 3.53 0 0 0 .002-.961l5.948-2.667A3.5 3.5 0 1 0 17.5 3Z"/>
+          </svg>
+          <span class="ml-2">Compartir Edicion</span>
+        </span>
+
+        <span class="flex items-center">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="ml-2">Descargar Edicion Completa en PDF</span>
+        </span>
+
+        <span class="flex items-center">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M14 7h-4v3a1 1 0 0 1-2 0V7H6a1 1 0 0 0-.997.923l-.917 11.924A2 2 0 0 0 6.08 22h11.84a2 2 0 0 0 1.994-2.153l-.917-11.924A1 1 0 0 0 18 7h-2v3a1 1 0 1 1-2 0V7Zm-2-3a2 2 0 0 0-2 2v1H8V6a4 4 0 0 1 8 0v1h-2V6a2 2 0 0 0-2-2Z" clip-rule="evenodd"/>
+        </svg>
+          <span class="ml-2">Ir a MegaShop</span>
+        </span>
+
       </div>
 
     </div>
+
   </div>
 
     <footer class="footer-container">
@@ -108,18 +178,18 @@
 
     <footer class="footer-container2">
 
-        <div class="footer-bottom">
-          <p>Prohibida su reproducción total o parcial, así como su traducción a cualquier idioma sin autorización escrita de su titular.</p>
-          <p>© 2024 Derechos Reservados Diario Yucatán. Powered by DimitriMedNov</p>
-        </div>
+      <div class="footer-bottom">
+        <p>Prohibida su reproducción total o parcial, así como su traducción a cualquier idioma sin autorización escrita de su titular.</p>
+        <p>© 2024 Derechos Reservados Diario Yucatán. Powered by DimitriMedNov</p>
+      </div>
 
-        <div class="social-links">
-          <a href="http://facebook.com"><img src="@/pages/images/facebookblanco.png" alt="Facebook"></a>
-          <a href="http://twitter.com"><img src="@/pages/images/twitterblanco.png" alt="Twitter"></a>
-          <a href="http://instagram.com"><img src="@/pages/images/instagramblanco.png" alt="Instagram"></a>
-        </div>
+      <div class="social-links">
+        <a href="http://facebook.com"><img src="@/pages/images/facebookblanco.png" alt="Facebook"></a>
+        <a href="http://twitter.com"><img src="@/pages/images/twitterblanco.png" alt="Twitter"></a>
+        <a href="http://instagram.com"><img src="@/pages/images/instagramblanco.png" alt="Instagram"></a>
+      </div>
 
-      </footer>
+    </footer>
 
 </template>
 
@@ -127,71 +197,139 @@
 export default {
   data() {
     return {
-      bannerData: [
-        {
-          title: 'Hoy hace 1 año',
-          date: 'Sábado 22/04/2023',
-          imageUrl: 'https://i0.wp.com/newspack-yucatan.s3.amazonaws.com/uploads/2018/08/01DYNA110818C.jpg?w=738&ssl=1',
-          link: 'URL_TO_EJEMPLAR_1'
-
-        },
-        {
-          title: 'Hace 5 años',
-          date: 'Lunes 22/04/2019',
-          imageUrl: 'https://i0.wp.com/newspack-yucatan.s3.amazonaws.com/uploads/2018/08/01DYNA100818C.jpg?w=738&ssl=1',
-          link: 'URL_TO_EJEMPLAR_2'
-        },
-        {
-          title: 'Hace 10 años',
-          date: 'Martes 22/04/2014',
-          imageUrl: 'https://i0.wp.com/newspack-yucatan.s3.amazonaws.com/uploads/2018/08/01DYNA090818C.jpg?w=738&ssl=1',
-          link: 'URL_TO_EJEMPLAR_3'
-        },
-        {
-          title: 'Hace 20 años',
-          date: 'Jueves 22/04/2004',
-          imageUrl: 'https://i0.wp.com/newspack-yucatan.s3.amazonaws.com/uploads/2018/08/01DYNA080818C.jpg?w=738&ssl=1',
-          link: 'URL_TO_EJEMPLAR_4'
-        },
-        {
-          title: 'Hace 25 años',
-          date: 'Viernes 22/04/1974',
-          imageUrl: 'https://i0.wp.com/newspack-yucatan.s3.amazonaws.com/uploads/2018/08/01DYNA070818C.jpg?w=738&ssl=1',
-          link: 'URL_TO_EJEMPLAR_5'
-        },
-        {
-          title: 'Hace 50 años',
-          date: 'Domingo 22/04/1924',
-          imageUrl: 'https://i0.wp.com/newspack-yucatan.s3.amazonaws.com/uploads/2018/08/01DYNA040818C.jpg?w=738&ssl=1',
-          link: 'URL_TO_EJEMPLAR_6'
-          },
-          {
-          title: 'Hace 75 años',
-          date: 'Domingo 22/04/1824',
-          imageUrl: 'https://imgs.search.brave.com/j0qBfHsURuhg6yHedI3b6jEIIy8zmx0_M8H1-hGucR4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/a2lvc2tvLm5ldC8y/MDI0LzA0LzE5L214/L214X2RpYXJpb195/dWNhdGFuLjc1MC5q/cGc',
-          link: 'URL_TO_EJEMPLAR_6'
-          },
-          {
-          title: 'Hace 100 años',
-          date: 'Domingo 22/04/1724',
-          imageUrl: 'https://megateca.s3.amazonaws.com/1927/1/1/01DYCS010127B.jpg',
-          link: 'URL_TO_EJEMPLAR_6'
-          }
-      ]
+      newsImageUrl: 'https://i0.wp.com/newspack-yucatan.s3.amazonaws.com/uploads/2018/08/01DYNA110818C.jpg?w=738&ssl=1' // Agregando la variable
     }
   },
   methods: {
-  searchByText() {
-    console.log("Buscando por texto:", this.searchQuery);
-  },
-  searchByDate() {
-    console.log("Buscando desde:", this.startDate, "hasta:", this.endDate);
+    searchByText() {
+      console.log("Buscando por texto:", this.searchQuery);
+    },
+    searchByDate() {
+      console.log("Buscando desde:", this.startDate, "hasta:", this.endDate);
+    }
   }
-}
 }
 </script>
 
 <style scoped>
+
+.news-display {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.news-image img {
+  width: 100%;
+  max-width: 600px;
+}
+
+.news-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-info h3, .date-info p {
+  margin: 5px 0;
+}
+
+.news-controls button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.search-box {
+  padding: 20px;
+}
+
+.search-box input[type="text"] {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.search-box button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0C5873;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.search-box button:hover {
+  background-color: #001c4c;
+}
+
+.additional-links {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+  color: #0C5873;
+}
+.additional-links svg {
+  width: 42px; /* Ajusta este valor */
+  height: 42px; /* Ajusta este valor */
+}
+
+.actions button{
+  margin-top: 20px;
+  font-size: 13px;
+  background-color: #0C5873;
+  color: white;
+  border: none;
+  padding: 11px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.actions button:hover {
+  background-color: #001c4c;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  font-size: 50px;
+  color: #0C5873;
+  font-family: "Merriweather", serif;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.edition, .subedition, .pages, .subpages, .year, .subyear{
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  font-size: 20px;
+  color: #0C5873;
+  font-weight: bold;
+}
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space buttons evenly */
+}
+
+.button-container svg {
+  width: 60px;
+  height: 60px;
+  color: #0C5873;
+}
+
+.svg-button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer; /* Indicate clickable element */
+}
 
 .footer-container {
   background-color: #202931;
@@ -311,96 +449,6 @@ export default {
 
 .dropdown:hover .dropdown-content {
   display: block;
-}
-
-.time-machine {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.main-title {
-  text-align: left;
-  padding-left: 80px;
-  margin-top: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  font-family: "Lora", serif;
-  color: #333333;
-}
-
-.newspapers {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
-}
-
-.newspaper {
-  flex-basis: 20%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.newspaper img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.newspaper h2, .newspaper p {
-  text-align: left;
-  margin: 5px 0;
-}
-
-.date-box {
-  font-family: "Lora", serif;
-  border-radius: 5px;
-  padding: 10px;
-  width: 100%;
-  margin-top: 0;
-  padding-top: 5px;
-}
-
-.date {
-  text-align: left;
-  margin: 0;
-  color: #333333;
-}
-
-.date-sub {
-  text-align: left;
-  font-weight: bold;
-  margin: 0;
-  font-size: 0.9em;
-  color: #4F92C9;
-}
-
-.link {
-  background: #001c4c;
-  color: white;
-  padding: 10px 20px;
-  width: 80%;
-  margin-top: 20px;
-  text-decoration: none;
-  border-radius: 20px;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  font-family: "Anton", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.link:hover {
-  background: #4F89B9;
 }
 
 .footer {
