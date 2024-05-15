@@ -1,47 +1,69 @@
 <template>
-  <v-row>
-    <v-col cols="12" md="4">
-      <v-card
-        subtitle="This is a card subtitle"
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus!"
-        title="This is a title"
-      ></v-card>
+  <v-card @click="sendOnlyPDF()">
+    <v-img
+      height="250"
+      :src="image"
+      cover
+    ></v-img>
 
-      <div class="text-center text-caption">Using Props Only</div>
-    </v-col>
+    <v-card-item>
+      <v-card-title>{{ publication }}</v-card-title>
 
-    <v-col cols="12" md="4">
-      <v-card>
-        <template v-slot:title>
-          This is a title
-        </template>
+      <v-card-subtitle>
+        <span class="me-1">{{ cChangedDateFormat(date) }}</span>
+      </v-card-subtitle>
+    </v-card-item>
 
-        <template v-slot:subtitle>
-          This is a card subtitle
-        </template>
-
-        <template v-slot:text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus!
-        </template>
-      </v-card>
-
-      <div class="text-center text-caption">Using Slots Only</div>
-    </v-col>
-
-    <v-col cols="12" md="4">
-      <v-card>
-        <v-card-item>
-          <v-card-title>This is a title</v-card-title>
-
-          <v-card-subtitle>This is a card subtitle</v-card-subtitle>
-        </v-card-item>
-
-        <v-card-text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus!
-        </v-card-text>
-      </v-card>
-
-      <div class="text-center text-caption">Using Markup Only</div>
-    </v-col>
-  </v-row>
+    <v-card-text>
+      <div>
+        {{ notebook }}
+      </div>
+    </v-card-text>
+  </v-card>
 </template>
+
+<script>
+export default {
+  data: () => ({}),
+  props: {
+    publication: {
+      type: String,
+      require: true
+    },
+    notebook: {
+      type: String,
+      require: true
+    },
+    date: {
+      type: String,
+      require: true,
+    },
+    image: {
+      type: String,
+      require: true
+    },
+    newId: {
+      type: String,
+      require: true
+    }
+  },
+  methods: {
+    setMont(index) {
+      const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+      return months[index];
+    },
+    cChangedDateFormat(date) {
+      const newDate = new Date(date).toISOString().substring(0,10).split('-');
+      return newDate[2] + '-' + this.setMont(Number(newDate[1] - 1)) + '-' + newDate[0];
+    },
+    sendOnlyPDF() {
+      this.$router.push({
+        path: '/search_',
+        query: {
+          id: this.newId.replace('P-', ''),
+        }
+      })
+    }
+  }
+};
+</script>
