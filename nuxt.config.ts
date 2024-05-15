@@ -1,25 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  build: {
-    transpile: ['vuetify'],
-  },
-  modules: [
-    (_options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error
-        config.plugins.push(vuetify({ autoImport: true }))
-      })
+  modules: ['@pinia/nuxt', "vuetify-nuxt-module"],
+  vuetify: {
+    moduleOptions: {
+      /* module specific options */
     },
-    //...
-  ],
-  vite: {
-    vue: {
-      template: {
-        transformAssetUrls,
-      },
-    },
+    vuetifyOptions: {
+      /* vuetify options */
+    }
   },
+  runtimeConfig: {
+    public: {
+      storage: 'https://megateca.s3.amazonaws.com',
+      apiBase: 'http://localhost:3001/api'
+    }
+  }
 })

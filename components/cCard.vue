@@ -1,25 +1,69 @@
 <template>
-    <v-card
-      class="mx-auto"
-      prepend-icon="$vuetify"
-      subtitle="The #1 Vue UI Library"
-    >
-      <template v-slot:title>
-        <span class="font-weight-black">Welcome to Vuetify</span>
-      </template>
-  
-      <v-card-text class="bg-surface-light pt-4">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!
-      </v-card-text>
-    </v-card>
-  </template>
+  <v-card @click="sendOnlyPDF()">
+    <v-img
+      height="250"
+      :src="image"
+      cover
+    ></v-img>
+
+    <v-card-item>
+      <v-card-title>{{ publication }}</v-card-title>
+
+      <v-card-subtitle>
+        <span class="me-1">{{ cChangedDateFormat(date) }}</span>
+      </v-card-subtitle>
+    </v-card-item>
+
+    <v-card-text>
+      <div>
+        {{ notebook }}
+      </div>
+    </v-card-text>
+  </v-card>
+</template>
 
 <script>
 export default {
-
-}
+  data: () => ({}),
+  props: {
+    publication: {
+      type: String,
+      require: true
+    },
+    notebook: {
+      type: String,
+      require: true
+    },
+    date: {
+      type: String,
+      require: true,
+    },
+    image: {
+      type: String,
+      require: true
+    },
+    newId: {
+      type: String,
+      require: true
+    }
+  },
+  methods: {
+    setMont(index) {
+      const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+      return months[index];
+    },
+    cChangedDateFormat(date) {
+      const newDate = new Date(date).toISOString().substring(0,10).split('-');
+      return newDate[2] + '-' + this.setMont(Number(newDate[1] - 1)) + '-' + newDate[0];
+    },
+    sendOnlyPDF() {
+      this.$router.push({
+        path: '/search_',
+        query: {
+          id: this.newId.replace('P-', ''),
+        }
+      })
+    }
+  }
+};
 </script>
-
-<style>
-
-</style>
