@@ -1,9 +1,11 @@
 <template>
-  <v-card @click="sendOnlyPDF()">
+
+    <v-card @click="sendOnlyPDF()">
     <v-img
-      height="250"
-      :src="image"
-      cover
+        width="100%"
+        height="auto"
+        :src="image"
+        cover
     ></v-img>
 
     <v-card-item>
@@ -20,6 +22,7 @@
       </div>
     </v-card-text>
   </v-card>
+
 </template>
 
 <script>
@@ -63,7 +66,17 @@ export default {
           id: this.newId.replace('P-', ''),
         }
       })
-    }
+    },
+    searchByText() {
+    console.log("Buscando por texto:", this.searchQuery);
+    },
+    searchByDate() {
+      console.log("Buscando desde:", this.startDate, "hasta:", this.endDate);
+    },
   }
 };
 </script>
+
+<style scoped>
+
+</style>
