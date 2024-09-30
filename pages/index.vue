@@ -67,9 +67,21 @@
         <span class="input-icon">
           <img src="../public/búsqueda.png" alt="Buscar"/>
         </span>
-        <input type="text" placeholder="Buscar" v-model="searchQuery">
+        <input type="text" placeholder="Buscar" @keyup.enter="advSearch" v-model="searchQuery">
       </div>
-      <button class="button-date" @click="searchByText">Buscar</button>
+      <div class="date-group">
+      <input type="date"
+             v-model="startDate"
+             min="1927-01-01" max="1927-12-31"
+             placeholder="Fecha inicial">
+
+      <input type="date"
+             :disabled="!startDate"
+             v-model="endDate"
+             :min="startDate" max="1927-12-31"
+             placeholder="Fecha final">
+      </div>
+      <button class="button-date" @click="advSearch">Buscar</button>
     </div>
 
   <div class="time-machine">
@@ -153,13 +165,34 @@ export default {
       storage: useRuntimeConfig().public.storage,
       pdfs: [],
       page: 1,
-      searchQuery: ''
+      searchQuery: '',
+      limit: 20,
+      totalElements: 0,
+      startDate: '',
+      endDate: ''
+
     };
   },
   methods: {
+    async advSearch() {
+      try {
+        this.dialog = true;
+        console.log(`${this.api}/advSearch?keywords=${this.searchQuery}&gteDate=${this.startDate}&lteDate=${this.endDate}&limit=${this.limit}&page=${this.page}`);
+        const response = await $fetch(`${this.api}/advSearch?keywords=${this.searchQuery}&gteDate=${this.startDate}&lteDate=${this.endDate}&limit=${this.limit}&page=${this.page}`, {
+          method: 'GET',
+        });
+        this.pdfs = response?.msg || [];
+        this.getConter()
+        this.dialog = false;
+      } catch (error) {
+        console.log('Error ', error);
+        this.dialog = false;
+      }
+    },
     async getPDFs() {
       try {
         this.dialog = true;
+        console.log(`${this.api}/pdfs?page=${this.page}`);
         const response = await $fetch(`${this.api}/pdfs?page=${this.page}`, {
           method: 'GET',
         });
@@ -170,28 +203,26 @@ export default {
         this.dialog = false;
       }
     },
-    async searchByText() {
+    async getConter() {
       try {
-        this.dialog = true;
-        const response = await $fetch(`${this.api}/search?query=${this.searchQuery}`, {
+        const response = await $fetch(`${this.api}/advSearch?keywords=${this.searchQuery}&isFirstTime=1`, {
           method: 'GET',
         });
-        this.pdfs = response?.msg || [];
-        this.dialog = false;
+        this.totalElements = response?.msg[0].totalMatches|| 0;
+        console.log('Total elements ', this.totalElements);
       } catch (error) {
         console.log('Error ', error);
-        this.dialog = false;
       }
     },
     async nextPage() {
       this.page += 1;
-      await this.getPDFs();
+      await this.advSearch();
       document.getElementById('currentPage').innerText = this.page;
     },
     async prevPage() {
       if (this.page > 1) {
         this.page -= 1;
-        await this.getPDFs();
+        await this.advSearch();
         document.getElementById('currentPage').innerText = this.page;
       }
     }
@@ -209,6 +240,11 @@ export default {
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
+}
+
+.pagination-buttons button:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
 }
 
 .footer-container {

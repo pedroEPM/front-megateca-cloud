@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       storage: 'https://megateca.s3.amazonaws.com',
-      apiBase: 'http://localhost:3001/api'
+      apiBase: 'http://localhost:3005/api'
     }
   }
 })
