@@ -88,7 +88,7 @@
     <h1 class="main-title">Tal día como hoy</h1>
   </div>
 
- <p v-if="dialog">Getting data</p>
+ <p v-if="dialog">Getting data...</p>
   <v-container>
     <v-row v-if="pdfs.length > 0">
       <v-col
