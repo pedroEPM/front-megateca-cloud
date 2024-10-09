@@ -12,21 +12,21 @@
 
     <footer class="footer">
       <div class="social-media">
-        <img src="@/pages/images/facebook.png" alt="Facebook"/>
-        <img src="@/pages/images/twitter.png" alt="Twitter"/>
-        <img src="@/pages/images/instagram.png" alt="Instagram"/>
-        <img src="@/pages/images/youtube.png" alt="YouTube"/>
+        <img src="@/public/facebook.png" alt="Facebook"/>
+        <img src="@/public/twitter.png" alt="Twitter"/>
+        <img src="@/public/instagram.png" alt="Instagram"/>
+        <img src="@/public/youtube.png" alt="YouTube"/>
       </div>
 
       <div class="logo">
-        <img src="@/pages/images/logoDiario.png" alt="Diario de Yucatán">
+        <img src="@/public/logoDiario.png" alt="Diario de Yucatán">
       </div>
 
       <div class="navigation">
         <button @click="login" style="color: black; font-weight: bold;">Iniciar Sesión</button>
         <button @click="subscribe" style="background-color: #0C5873;color: white;">Suscríbete</button>
         <button @click="search" class="search-button">
-          <img src="@/pages/images/búsqueda.png" alt="Buscar">
+          <img src="@/public/búsqueda.png" alt="Buscar">
         </button>
       </div>
     </footer>
@@ -71,7 +71,7 @@
     <div class="search-container">
       <div class="input-group">
         <span class="input-icon">
-          <img src="@/pages/images/búsqueda.png" alt="Buscar"/>
+          <img src="@/public/búsqueda.png" alt="Buscar"/>
         </span>
         <input type="text" placeholder="Buscar" v-model="searchQuery">
       </div>
@@ -156,23 +156,21 @@
         </span>
 
       </div>
-
     </div>
-
   </div>
 
     <footer class="footer-container">
         <div class="footer-links">
-          <img src="@/pages/images/footer-mega-media.png" alt="Grupo Megamedia" class="footer-logo" style="width: 180px; height: auto;">
-          <a href="/sociales"><img src="@/pages/images/footer-logo-sociales.png" alt="Sociales" class="link-icon" style="width: 70px; height: 10px;"></a>
-          <a href="/planb"><img src="@/pages/images/footer-logo-9.png" alt="Plan B" class="link-icon" style="width: auto; height: auto;"></a>
-          <a href="/avisoseconomicos"><img src="@/pages/images/footer-logo-2-1.png" alt="Avisos Económicos" class="link-icon" style="width: auto; height: auto;"></a>
-          <a href="/cmujer"><img src="@/pages/images/footer-logo-3-1.png" alt="C Mujer" class="link-icon" style="width: auto; height: auto;"></a>
-          <a href="/descubro"><img src="@/pages/images/footer-logo-4.png" alt="Descubro" class="link-icon" style="width: auto; height: auto;"></a>
-          <a href="/meganews"><img src="@/pages/images/footer-logo-5.png" alt="Mega News" class="link-icon" style="width: auto; height: auto;"></a>
-          <a href="/empleate"><img src="@/pages/images/footer-logo-8-2.png" alt="Empléate" class="link-icon" style="width: auto; height: auto;"></a>
-          <a href="/megashop"><img src="@/pages/images/footer-logo-7.png" alt="Mega Shop" class="link-icon" style="width: auto; height: auto;"></a>
-          <a href="/alchile"><img src="@/pages/images/footer-logo-1-1.png" alt="Al Chile" class="link-icon" style="width: auto; height: auto;"></a>
+          <img src="@/public/footer-mega-media.png" alt="Grupo Megamedia" class="footer-logo" style="width: 180px; height: auto;">
+          <a href="/sociales"><img src="@/public/footer-logo-sociales.png" alt="Sociales" class="link-icon" style="width: 70px; height: 10px;"></a>
+          <a href="/planb"><img src="@/public/footer-logo-9.png" alt="Plan B" class="link-icon" style="width: auto; height: auto;"></a>
+          <a href="/avisoseconomicos"><img src="@/public/footer-logo-2-1.png" alt="Avisos Económicos" class="link-icon" style="width: auto; height: auto;"></a>
+          <a href="/cmujer"><img src="@/public/footer-logo-3-1.png" alt="C Mujer" class="link-icon" style="width: auto; height: auto;"></a>
+          <a href="/descubro"><img src="@/public/footer-logo-4.png" alt="Descubro" class="link-icon" style="width: auto; height: auto;"></a>
+          <a href="/meganews"><img src="@/public/footer-logo-5.png" alt="Mega News" class="link-icon" style="width: auto; height: auto;"></a>
+          <a href="/empleate"><img src="@/public/footer-logo-8-2.png" alt="Empléate" class="link-icon" style="width: auto; height: auto;"></a>
+          <a href="/megashop"><img src="@/public/footer-logo-7.png" alt="Mega Shop" class="link-icon" style="width: auto; height: auto;"></a>
+          <a href="/alchile"><img src="@/public/footer-logo-1-1.png" alt="Al Chile" class="link-icon" style="width: auto; height: auto;"></a>
         </div>
     </footer>
 
@@ -184,9 +182,9 @@
       </div>
 
       <div class="social-links">
-        <a href="http://facebook.com"><img src="@/pages/images/facebookblanco.png" alt="Facebook"></a>
-        <a href="http://twitter.com"><img src="@/pages/images/twitterblanco.png" alt="Twitter"></a>
-        <a href="http://instagram.com"><img src="@/pages/images/instagramblanco.png" alt="Instagram"></a>
+        <a href="http://facebook.com"><img src="@/public/facebookblanco.png" alt="Facebook"></a>
+        <a href="http://twitter.com"><img src="@/public/twitterblanco.png" alt="Twitter"></a>
+        <a href="http://instagram.com"><img src="@/public/instagramblanco.png" alt="Instagram"></a>
       </div>
 
     </footer>
